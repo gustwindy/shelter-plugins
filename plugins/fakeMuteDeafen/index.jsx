@@ -50,11 +50,13 @@ export function onLoad() {
 		if (store.active) {
 			return store.deafened
 		}
+		return ret
 	})
 	unpatch_mute = shelter.patcher.after("isSelfMute",stores.MediaEngineStore,(args,ret)=>{
 		if (store.active) {
 			return store.mute
 		}
+		return ret
 	})
 
 	button = createButton()
