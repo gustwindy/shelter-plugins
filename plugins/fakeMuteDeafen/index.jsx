@@ -21,7 +21,6 @@ function createButton() {
 
 var unpatch_deaf
 var unpatch_mute
-var remove_css
 var AAAA = false
 export function onLoad() {
 	log("[fakeMuteDeafen] loaded >:3")
@@ -65,11 +64,11 @@ export function onLoad() {
 }
 
 export function onUnload() {
-	window.fmd_remove_css()
 	document.querySelectorAll(".guhw-fmd").forEach(element => {
 		element.remove()
 		console.log(element)
 	});
 	unpatch_deaf()
 	unpatch_mute()
+	window.fmd_remove_css()
 }
