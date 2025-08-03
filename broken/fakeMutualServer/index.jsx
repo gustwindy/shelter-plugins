@@ -51,6 +51,7 @@ function create_fake_server(reference) {
 export function onLoad() {
 	log("loaded :3")
 	shelter.plugin.scoped.flux.intercept(dispatch => {
+		console.log(dispatch.type)
 		if (dispatch.type == "USER_PROFILE_MODAL_OPEN") {//(!ignore.includes(dispatch.type)) {
 			if (dispatch.userId == store.userId) {
 				log("user profile open! :3")

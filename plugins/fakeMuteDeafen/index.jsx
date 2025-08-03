@@ -7,9 +7,9 @@ const {
 import css from "./style.css"
 
 function createButton() {
-	const parent = document.querySelector('.buttons__37e49:has(.micButtonParent__37e49:has([aria-label="Mute"])):not(:has(.guhw-fmd))')
+	const parent = document.querySelector('.buttons__37e49:has([aria-label="Deafen"]):not(:has(.guhw-fmd))')
 	if (parent) {
-		var button = parent.querySelector(".micButtonParent__37e49").cloneNode(true)
+		var button = parent.querySelector("button[aria-label=\"Deafen\"]").cloneNode(true)
 		parent.appendChild(button)
 		button.classList.add("guhw-fmd")
 		button.childNodes[0].setAttribute("aria-label","Lock Voice State")
