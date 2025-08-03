@@ -21,12 +21,13 @@ function createButton() {
 
 var unpatch_deaf
 var unpatch_mute
-var AAAA = false
+var enabled = false
+var button = false
 export function onLoad() {
 	log("[fakeMuteDeafen] loaded >:3")
 	window.fakeDeaf = ()=>{
-		AAAA = !AAAA
-		if (AAAA) {
+		enabled = !enabled
+		if (enabled) {
 			shelter.ui.showToast({
 				title: "Fake Mute-Deafen",
 				content: "Locked current voice state. Clicking Mute/Deaf will unmute/undeafen you, but it wont update the icons anywhere."
@@ -42,7 +43,7 @@ export function onLoad() {
 			})
 			store.active = false
 		}
-		button.classList.toggle("guhw-fmd-activated",AAAA)
+		button.classList.toggle("guhw-fmd-activated",enabled)
 	}
 
 	unpatch_deaf = shelter.patcher.after("isSelfDeaf",stores.MediaEngineStore,(args,ret)=>{
@@ -56,9 +57,9 @@ export function onLoad() {
 		}
 	})
 
-	createButton()
+	button = createButton()
 	onCleanup(()=>{
-		createButton()
+		button = createButton()
 	})
 	window.fmd_remove_css = shelter.ui.injectCss(css)
 }
