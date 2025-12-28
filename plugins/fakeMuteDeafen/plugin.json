@@ -1,5 +1,5 @@
 {
   "name": "Fake Mute-Deafen",
   "author": "guhw :3",
-  "description": "Lets you hear/speak, without updating the icons. I couldn't port the vencord one, so I just implemented my own."
+  "description": "Lets you hear/speak, without updating the icons. Use the lock button beside the mute button to lock your visual VC state."
 }

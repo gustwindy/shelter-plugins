@@ -7,7 +7,7 @@ const {
 import css from "./style.css"
 
 function createButton() {
-	const parent = document.querySelector('.buttons__37e49:has([aria-label="Deafen"]):not(:has(.guhw-fmd))')
+	const parent = document.querySelector('[aria-label="Set Status"] ~ :has([aria-label="Deafen"]):has([aria-label="Mute"]):not(:has(.guhw-fmd))')
 	if (parent) {
 		var button = parent.querySelector("button[aria-label=\"Deafen\"]").cloneNode(true)
 		parent.prepend(button)
@@ -16,7 +16,7 @@ function createButton() {
 		button.querySelector("svg").innerHTML = `<path fill="currentColor" fill-rule="evenodd" d="M6 9h1V6a5 5 0 0 1 10 0v3h1a3 3 0 0 1 3 3v8a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3v-8a3 3 0 0 1 3-3Zm9-3v3H9V6a3 3 0 1 1 6 0Zm-1 8a2 2 0 0 1-1 1.73V18a1 1 0 1 1-2 0v-2.27A2 2 0 1 1 14 14Z" clip-rule="evenodd" class=""></path>`
 		button.addEventListener("click",window.fakeDeaf)
 	}
-	return button
+	return document.querySelector("button.guhw-fmd")
 }
 
 var unpatch_deaf
@@ -63,6 +63,11 @@ export function onLoad() {
 	onCleanup(()=>{
 		button = createButton()
 	})
+
+	const TRIGGERS = ["CHANNEL_SELECT", "LOAD_MESSAGES_SUCCESS"];
+	for (const t of TRIGGERS) shelter.plugin.scoped.flux.subscribe(t, ()=>{
+		button = createButton()
+	});
 	window.fmd_remove_css = shelter.ui.injectCss(css)
 }
 
