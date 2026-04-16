@@ -1,0 +1,24 @@
+.guhw-uwu {
+    padding: 0px 12px 0px 12px;
+    background-color: var(--chat-background);
+    border: var(--border-muted) solid 1px;
+    border-radius: 10px;
+    position: absolute;
+    right: 15px;
+    top: -20px;
+    color: var(--text-muted);
+    min-height: 22px;
+}
+
+.guhw-uwu span {
+    display: inline-block;
+    width: 20px !important;
+    height: 20px !important;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin: 2px;
+}
+.guhw-uwu:not(:has(span))::before {
+    content: "suggestions";
+    font-size: 10px;
+}

@@ -42,14 +42,6 @@ export const settings = () => (
 		<Button size={ButtonSizes.MEDIUM} onClick={updateFromURL}>Update</Button>
 		<Space></Space>
 		<Divider mt mb></Divider>
-		<ul id="guhw_mru_preview">
-			
-		</ul>
-		<script>
-			{setTimeout(() => {
-				createPreview()
-			}, 500)}
-		</script>
 	</div>
 )
 
