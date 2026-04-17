@@ -9,6 +9,8 @@ const { Divider, Header, TextBox, Space, Button, LinkButton, HeaderTags, ButtonS
 import css from "./style.css"
 
 var last_shown = []
+var currentTextbox = null
+var keyupHandler = null
 
 store.url ??= "https://example.com/"
 store.json ??= {}
@@ -73,25 +75,28 @@ function displayNow(text) {
 }
 
 function getDisplay() {
-	const parent = document.querySelector('.channelTextArea_f75fb0:not(:has(.guhw-uwu))')
-	if (parent) {
-		const container = document.createElement("div")
-
+	let container = document.querySelector(".guhw-uwu")
+	if (!container) {
+		const parent = document.querySelector('.channelTextArea_f75fb0')
+		if (!parent) return null
+		container = document.createElement("div")
 		container.classList.add("guhw-uwu")
-
 		parent.appendChild(container)
 	}
-	return document.querySelector(".guhw-uwu")
+	return container
 }
-function capture() {
-	const parent = document.querySelector('.channelTextArea_f75fb0 [role="textbox"]:not(.guhw-uwu-cap)')
 
-	if (parent) {
-		parent.classList.add("guhw-uwu-cap")
-		parent.addEventListener("keyup",()=>{
-			displayNow(parent.textContent)
-		})
+function capture() {
+	const textbox = document.querySelector('.channelTextArea_f75fb0 [role="textbox"]')
+	if (!textbox || textbox === currentTextbox) return
+
+	if (currentTextbox && keyupHandler) {
+		currentTextbox.removeEventListener("keyup", keyupHandler)
 	}
+
+	currentTextbox = textbox
+	keyupHandler = () => displayNow(currentTextbox.textContent)
+	currentTextbox.addEventListener("keyup", keyupHandler)
 }
 
 function init() {
@@ -138,6 +143,10 @@ export function onLoad() {
 }
 
 export function onUnload() {
-	window.guhw_uwu_remove_css()
-	window.removeEventListener("keydown",callback)
+	if (currentTextbox && keyupHandler) {
+		currentTextbox.removeEventListener("keyup", keyupHandler)
+	}
+	document.querySelector(".guhw-uwu")?.remove()
+	window.guhw_uwu_remove_css?.()
+	window.removeEventListener("keydown", callback)
 }
