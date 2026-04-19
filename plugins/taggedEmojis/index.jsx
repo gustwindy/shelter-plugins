@@ -11,6 +11,7 @@ import css from "./style.css"
 var last_shown = []
 var currentTextbox = null
 var keyupHandler = null
+var lastKeyup = 0
 
 store.url ??= "https://example.com/"
 store.json ??= {}
@@ -95,7 +96,13 @@ function capture() {
 	}
 
 	currentTextbox = textbox
-	keyupHandler = () => displayNow(currentTextbox.textContent)
+	keyupHandler = () => {
+		const now = Date.now()
+		if (now - lastKeyup < 250) return
+		lastKeyup = now
+		displayNow(currentTextbox.textContent)
+	}
+	
 	currentTextbox.addEventListener("keyup", keyupHandler)
 }
 
