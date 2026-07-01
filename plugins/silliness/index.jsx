@@ -2,6 +2,7 @@ const {
 	util: { log },
 	plugin: { store }
 } = shelter;
+import css from "./style.css"
 
 const emoji_regex = /(\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff])|(<a?:\w+:\d+>)|:3/gm;
 var unintercept
@@ -38,8 +39,11 @@ export function onLoad() {
 					duration: 2500
 				})
 			}
+
+			document.body.classList.toggle("guhw-s-warn",messages_since_wtv > THRESHOLD-WARN_THRESHOLD_DIFFERENCE)
 			if (messages_since_wtv > THRESHOLD) {
 				orig.body.content = orig.body.content + " im stupid and SUPER GAY"
+				messages_since_wtv -= WARN_THRESHOLD_DIFFERENCE
 			}
 		} catch (error) {
 			shelter.ui.showToast({
@@ -52,8 +56,10 @@ export function onLoad() {
 		return send(orig)
 	});
 	init()
-}
+}	window.guhw_s_remove_css = shelter.ui.injectCss(css)
+
 
 export function onUnload() {
 	unintercept()
+	window.guhw_s_remove_css?.()
 }

@@ -123,6 +123,11 @@ const callback = (e)=>{
 				data: last_shown[num]
 			})
 			getDisplay().parentElement.querySelector('[role="textbox"]').dispatchEvent(event)
+			shelter.ui.showToast({
+				title: last_shown[num],
+				content: "put",
+				duration: 2000
+			})
 		}
 	}
 }
