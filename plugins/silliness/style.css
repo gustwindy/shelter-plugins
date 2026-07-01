@@ -1,4 +1,7 @@
 .guhw-s-warn .channelTextArea_f75fb0 {
     border: 1px solid #f38ba8;
-    background-color: #403449;
+}
+
+.guhw-s-warn .themedBackground__74017 {
+    background-color: #403449 !important;
 }
