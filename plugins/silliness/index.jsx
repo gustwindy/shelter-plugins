@@ -7,7 +7,7 @@ const emoji_regex = /(\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-
 var unintercept
 var messages_since_wtv = 0
 var THRESHOLD = 12
-var WARN_THRESHOLD_DIFFERENCE = 2
+var WARN_THRESHOLD_DIFFERENCE = 3
 export function onLoad() {
 	log("[Silliness] loaded :3")
 	unintercept = shelter.http.intercept("post", /\/channels\/\d+\/messages/,(orig,send)=>{
@@ -28,6 +28,13 @@ export function onLoad() {
 				shelter.ui.showToast({
 					title: "you are ABOUT to explode btw",
 					content: "do something about it",
+					duration: 2500
+				})
+			}
+			if (messages_since_wtv == THRESHOLD) {
+				shelter.ui.showToast({
+					title: "SSEND SOMETHING QUICK",
+					content: "QUICK QUICK",
 					duration: 2500
 				})
 			}
