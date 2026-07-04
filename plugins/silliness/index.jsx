@@ -7,7 +7,7 @@ import css from "./style.css"
 const emoji_regex = /(\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff])|(<a?:\w+:\d+>)|:3/gm;
 var unintercept
 var messages_since_wtv = 0
-var THRESHOLD = 12
+var THRESHOLD = 2
 var WARN_THRESHOLD_DIFFERENCE = 3
 export function onLoad() {
 	log("[Silliness] loaded :3")
@@ -44,6 +44,10 @@ export function onLoad() {
 			if (messages_since_wtv > THRESHOLD) {
 				orig.body.content = orig.body.content + " im stupid and SUPER GAY"
 				messages_since_wtv -= WARN_THRESHOLD_DIFFERENCE
+				document.body.classList.toggle("guhw-kaboom",true)
+				setTimeout(() => {
+					document.body.classList.toggle("guhw-kaboom",false)
+				}, 2000);
 			}
 		} catch (error) {
 			shelter.ui.showToast({
