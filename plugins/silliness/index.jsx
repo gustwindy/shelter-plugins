@@ -7,7 +7,7 @@ import css from "./style.css"
 const emoji_regex = /(\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff])|(<a?:\w+:\d+>)|:3/gm;
 var unintercept
 var messages_since_wtv = 0
-var THRESHOLD = 2
+var THRESHOLD = 12
 var WARN_THRESHOLD_DIFFERENCE = 3
 export function onLoad() {
 	log("[Silliness] loaded :3")
