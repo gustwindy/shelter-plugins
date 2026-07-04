@@ -44,10 +44,10 @@ export function onLoad() {
 			if (messages_since_wtv > THRESHOLD) {
 				orig.body.content = orig.body.content + " im stupid and SUPER GAY"
 				messages_since_wtv -= WARN_THRESHOLD_DIFFERENCE
-				document.body.classList.toggle("guhw-kaboom",true)
+				/*document.body.classList.toggle("guhw-kaboom",true)
 				setTimeout(() => {
 					document.body.classList.toggle("guhw-kaboom",false)
-				}, 2000);
+				}, 2000);*/
 			}
 		} catch (error) {
 			shelter.ui.showToast({
