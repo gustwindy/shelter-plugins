@@ -12,7 +12,6 @@ var WARN_THRESHOLD_DIFFERENCE = 3
 
 export function onLoad() {
 	log("[Silliness] loaded :3")
-	document.head.appendChild(a)
 
 	unintercept = shelter.http.intercept("post", /\/channels\/\d+\/messages/,(orig,send)=>{
 		var click = document.querySelector("audio.guhw-s-click")
