@@ -9,21 +9,29 @@ var unintercept
 var messages_since_wtv = 0
 var THRESHOLD = 12
 var WARN_THRESHOLD_DIFFERENCE = 3
+
 export function onLoad() {
 	log("[Silliness] loaded :3")
+	document.head.appendChild(a)
+
 	unintercept = shelter.http.intercept("post", /\/channels\/\d+\/messages/,(orig,send)=>{
+		var click = document.querySelector("audio.guhw-s-click")
+		if (!click) {
+			click = document.createElement("audio")
+			click.classList.add("guhw-s-audio")
+			document.body.append(click)
+		}
+		click.src = "https://shelter.guhw.dev/silliness/clicker.mp3"
+		click.volume = 0.25
 		try {
+			if (orig.body.content.length < 2) {
+				return
+			}
 			const has_emoji = emoji_regex.exec(orig.body.content) != null
 			messages_since_wtv += 1
 			if (has_emoji) {
 				messages_since_wtv = 0
-				if (messages_since_wtv >= THRESHOLD-WARN_THRESHOLD_DIFFERENCE) {
-					shelter.ui.showToast({
-						title: "saved",
-						content: "u wont explode",
-						duration: 1000
-					})
-				}
+				click.play()
 			}
 			if (messages_since_wtv == THRESHOLD-WARN_THRESHOLD_DIFFERENCE) {
 				shelter.ui.showToast({
@@ -66,4 +74,7 @@ export function onLoad() {
 export function onUnload() {
 	unintercept()
 	window.guhw_s_remove_css?.()
+	document.querySelectorAll(".guhw-s-audio").forEach(v=>{
+		v.remove()
+	})
 }
