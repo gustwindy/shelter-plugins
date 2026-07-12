@@ -14,17 +14,18 @@ export function onLoad() {
 	log("[Silliness] loaded :3")
 
 	unintercept = shelter.http.intercept("post", /\/channels\/\d+\/messages/,(orig,send)=>{
-		var click = document.querySelector("audio.guhw-s-audio")
-		if (!click) {
-			click = document.createElement("audio")
-			click.classList.add("guhw-s-audio")
-			
-			document.body.append(click)
-		}
-		click.src = "https://shelter.guhw.dev/clicker.mp3"
-		click.volume = 0.25
 		try {
-			if (orig.body.content.length < 2) {
+			var click = document.querySelector("audio.guhw-s-audio")
+			if (!click) {
+				click = document.createElement("audio")
+				click.classList.add("guhw-s-audio")
+				
+				document.body.append(click)
+			}
+			click.src = "https://shelter.guhw.dev/clicker.mp3"
+			click.volume = 0.25
+			
+			if ((!orig.body.content) || orig.body.content.length < 2) {
 				return
 			}
 			const has_emoji = emoji_regex.exec(orig.body.content) != null
