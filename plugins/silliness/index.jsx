@@ -14,10 +14,11 @@ export function onLoad() {
 	log("[Silliness] loaded :3")
 
 	unintercept = shelter.http.intercept("post", /\/channels\/\d+\/messages/,(orig,send)=>{
-		var click = document.querySelector("audio.guhw-s-click")
+		var click = document.querySelector("audio.guhw-s-audio")
 		if (!click) {
 			click = document.createElement("audio")
 			click.classList.add("guhw-s-audio")
+			
 			document.body.append(click)
 		}
 		click.src = "https://shelter.guhw.dev/clicker.mp3"
@@ -30,6 +31,7 @@ export function onLoad() {
 			messages_since_wtv += 1
 			if (has_emoji) {
 				messages_since_wtv = 0
+				click.currentTime = 0
 				click.play()
 			}
 			if (messages_since_wtv == THRESHOLD-WARN_THRESHOLD_DIFFERENCE) {
