@@ -20,7 +20,7 @@ export function onLoad() {
 			click.classList.add("guhw-s-audio")
 			document.body.append(click)
 		}
-		click.src = "https://shelter.guhw.dev/silliness/clicker.mp3"
+		click.src = "https://shelter.guhw.dev/clicker.mp3"
 		click.volume = 0.25
 		try {
 			if (orig.body.content.length < 2) {
