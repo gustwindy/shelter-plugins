@@ -1,4 +1,4 @@
-const url = "https://api.github.com/repos/grhw/shelter-plugins/contents/plugins"
+const url = "https://api.github.com/repos/gustwindy/shelter-plugins/contents/plugins"
 
 function getPluginList(callback) {
     if (!sessionStorage.getItem("last_fetch")) {
