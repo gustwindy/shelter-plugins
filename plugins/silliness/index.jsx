@@ -26,7 +26,7 @@ export function onLoad() {
 			click.volume = 0.25
 			
 			if ((!orig.body.content) || orig.body.content.length < 2) {
-				return
+				return send(orig)
 			}
 			const has_emoji = emoji_regex.exec(orig.body.content) != null
 			messages_since_wtv += 1
